@@ -872,11 +872,11 @@ Module Main
             ' +/- n
             CommandLine = CommandLine.Trim
 
-            If CommandLine.StartsWith("+") OrElse CommandLine.StartsWith("-") OrElse (IsNumeric(CommandLine.Substring(0, 1)) AndAlso gFadeTime > -1) Then
+            If CommandLine.StartsWith('+') OrElse CommandLine.StartsWith('-') OrElse (IsNumeric(CommandLine.Substring(0, 1)) AndAlso gFadeTime > -1) Then
 
                 Dim WorkingLine As String = CommandLine
 
-                If WorkingLine.StartsWith("+") OrElse WorkingLine.StartsWith("-") Then
+                If WorkingLine.StartsWith('+') OrElse WorkingLine.StartsWith('-') Then
                     WorkingLine = WorkingLine.Remove(0, 1).Trim()
                 End If
 
@@ -899,7 +899,7 @@ Module Main
                             ' we will to use the highest volume of all them as the starting point for fading down, and
                             ' the lowest volume of all them as the starting point for fading up
 
-                            If CommandLine.StartsWith("-") Then
+                            If CommandLine.StartsWith('-') Then
                                 gStartingLevel = 0
                                 For Each i In gSessionIndex
                                     gStartingLevel = Math.Max(gStartingLevel, gSessions(i).SimpleAudioVolume.Volume * 100)
@@ -915,10 +915,10 @@ Module Main
 
                         Dim CurrentVolume As Integer = gStartingLevel
 
-                        If CommandLine.StartsWith("-") Then
+                        If CommandLine.StartsWith('-') Then
                             NewVolume = CurrentVolume - DeltaVolume
                             If NewVolume < 0 Then NewVolume = 0
-                        ElseIf CommandLine.StartsWith("+") Then
+                        ElseIf CommandLine.StartsWith('+') Then
                             NewVolume = CurrentVolume + DeltaVolume
                             If NewVolume > 100 Then NewVolume = 100
                         Else
