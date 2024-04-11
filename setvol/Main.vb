@@ -601,7 +601,7 @@ Module Main
 
                     Dim SamplingPeriod() = LookForSamplingPeriod.Split(" ")
 
-                    If SamplingPeriod.Count > 0 Then
+                    If SamplingPeriod.Length > 0 Then
 
                         If SamplingPeriod(0) > String.Empty Then
 
@@ -790,8 +790,8 @@ Module Main
 
                     Dim Values() As String = WorkingLine.Split(":")
 
-                    If Values.Count > gDev.AudioEndpointVolume.Channels.Count Then
-                        Console_WriteLineInColour("Error: the number of channels specified (" & Values.Count & ") exceeeds the number of channels (" & gDev.AudioEndpointVolume.Channels.Count & ") supported by " & gDev.FriendlyName, ConsoleColor.Red)
+                    If Values.Length > gDev.AudioEndpointVolume.Channels.Count Then
+                        Console_WriteLineInColour("Error: the number of channels specified (" & Values.Length & ") exceeeds the number of channels (" & gDev.AudioEndpointVolume.Channels.Count & ") supported by " & gDev.FriendlyName, ConsoleColor.Red)
                         GoTo ErrorFound
                     End If
 
@@ -803,7 +803,7 @@ Module Main
                     Dim WorkingValue As Integer = 0
                     ReDim Preserve Values(gDev.AudioEndpointVolume.Channels.Count - 1)
 
-                    For x As Integer = 0 To Values.Count - 1
+                    For x As Integer = 0 To Values.Length - 1
 
                         Try
 
