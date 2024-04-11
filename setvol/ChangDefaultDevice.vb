@@ -68,10 +68,6 @@ Public Class AudioEndPoints
 
     End Sub
 
-    Private Shared SPDRP_Guid As New Guid(&HA45C254EUI, &HDF1C, &H4EFD, &H80, &H20, &H67, &HD1, &H46, &HA8, &H50, &HE0)
-
-    Private Const STGM_READ As Integer = &H0 'used for the (stgmAccess) parameter of the (OpenPropertyStore) function in the (IMMDevice) interface.
-
     <ComImport(), Guid("0BD7A1BE-7A1A-44DB-8397-CC5392387B5E"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)>
     Private Interface IMMDeviceCollection
         Function GetCount(ByRef pcDevices As UInteger) As Integer
@@ -163,8 +159,8 @@ Public Class AudioEndPoints
 
     <StructLayout(LayoutKind.Sequential, Pack:=4)>
     Private Structure PropertyKey
-        Private m_formatId As Guid
-        Private m_propertyId As Integer
+        Private ReadOnly m_formatId As Guid
+        Private ReadOnly m_propertyId As Integer
         Public ReadOnly Property FormatId() As Guid
             Get
                 Return Me.m_formatId
@@ -197,7 +193,7 @@ Public Class AudioEndPoints
         Implements IDisposable
 
         <FieldOffset(0)> Private valueType As UShort
-        <FieldOffset(8)> Private ptr As IntPtr
+        <FieldOffset(8)> Private ReadOnly ptr As IntPtr
 
         Public Property VarType() As VarEnum
             Get
@@ -224,9 +220,7 @@ Public Class AudioEndPoints
         End Sub
 
         Public Sub New(ByVal value As String)
-            If value Is Nothing Then
-                Throw New ArgumentNullException("value")
-            End If
+            ArgumentNullException.ThrowIfNull(value)
 
             Me.valueType = CUShort(VarEnum.VT_LPWSTR)
             Me.ptr = Marshal.StringToCoTaskMemUni(value)

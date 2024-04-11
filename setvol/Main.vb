@@ -17,7 +17,7 @@ Module Main
 
     ' Global variables
 
-    Private gEenumer As New MMDeviceEnumerator()
+    Private ReadOnly gEenumer As New MMDeviceEnumerator()
     Private gDev As MMDevice
     Private gRecorder As WaveInEvent
     Private Enum PlayOrRecordEnum
@@ -53,7 +53,7 @@ Module Main
     Private gFadeTime As Single = -1
 
     Private gSessions As SessionCollection
-    Private gSessionIndex As New List(Of Integer)
+    Private ReadOnly gSessionIndex As New List(Of Integer)
 
     Private gSetAppAudioVolume As Boolean = False
 
@@ -1477,10 +1477,10 @@ WrapUp:
 
             Next
 
-            gRecorder = New WaveInEvent()
-
-            gRecorder.WaveFormat = New WaveFormat(44100, gDev.AudioEndpointVolume.Channels.Count)
-            gRecorder.DeviceNumber = DeviceID
+            gRecorder = New WaveInEvent With {
+                .WaveFormat = New WaveFormat(44100, gDev.AudioEndpointVolume.Channels.Count),
+                .DeviceNumber = DeviceID
+            }
 
             gRecorder.StartRecording()
 
