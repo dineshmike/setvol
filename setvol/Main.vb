@@ -17,7 +17,7 @@ Module Main
 
     ' Global variables
 
-    Private gEenumer As MMDeviceEnumerator = New MMDeviceEnumerator()
+    Private gEenumer As New MMDeviceEnumerator()
     Private gDev As MMDevice
     Private gRecorder As WaveInEvent
     Private Enum PlayOrRecordEnum
@@ -1320,7 +1320,7 @@ WrapUp:
 
         Try
 
-            Dim enumerator As MMDeviceEnumerator = New MMDeviceEnumerator()
+            Dim enumerator As New MMDeviceEnumerator()
 
             Try
                 DefaultDeviceName_Record = enumerator.GetDefaultAudioEndpoint(DataFlow.Capture, Role.Multimedia).FriendlyName

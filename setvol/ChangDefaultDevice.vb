@@ -35,8 +35,8 @@ Public Class AudioEndPoints
 
         Try
 
-            Dim IID_IPolicyConfigVista As Guid = New Guid("568b9108-44bf-40b4-9006-86afe5b5a620")
-            Dim CLSID_CPolicyConfigVistaClient As Guid = New Guid("294935CE-F637-4E7C-A41B-AB255460B862")
+            Dim IID_IPolicyConfigVista As New Guid("568b9108-44bf-40b4-9006-86afe5b5a620")
+            Dim CLSID_CPolicyConfigVistaClient As New Guid("294935CE-F637-4E7C-A41B-AB255460B862")
 
             If CoCreateInstance(CLSID_CPolicyConfigVistaClient, Nothing, CLSCTX.CLSCTX_INPROC_SERVER, IID_IPolicyConfigVista, oIPCV) <> 0 Then
                 Throw New Exception("Failed:  CoCreateInstance")
