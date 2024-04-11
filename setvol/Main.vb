@@ -12,6 +12,7 @@
 
 Imports NAudio.CoreAudioApi
 Imports NAudio.Wave
+
 Module Main
 
     ' Global variables

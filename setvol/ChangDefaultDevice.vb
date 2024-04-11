@@ -1,6 +1,4 @@
-﻿
-Imports System.Runtime.InteropServices
-Imports NAudio.CoreAudioApi
+﻿Imports System.Runtime.InteropServices
 
 Module ChangDefaultDevice
 
@@ -11,6 +9,7 @@ Module ChangDefaultDevice
     End Sub
 
 End Module
+
 Public Class AudioEndPoints
 
     <ComImport(), Guid("568b9108-44bf-40b4-9006-86afe5b5a620"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)>
