@@ -1,6 +1,6 @@
 ﻿Imports System.Runtime.InteropServices
 
-Module ChangDefaultDevice
+Friend Module ChangDefaultDevice
 
     Friend Sub SetDefaultDevice(ByVal DeviceID As String, ByVal CommunicationsDevice As Boolean)
 
@@ -163,17 +163,17 @@ Public Class AudioEndPoints
         Private ReadOnly m_propertyId As Integer
         Public ReadOnly Property FormatId() As Guid
             Get
-                Return Me.m_formatId
+                Return m_formatId
             End Get
         End Property
         Public ReadOnly Property PropertyId() As Integer
             Get
-                Return Me.m_propertyId
+                Return m_propertyId
             End Get
         End Property
         Public Sub New(ByVal formatId As Guid, ByVal propertyId As Integer)
-            Me.m_formatId = formatId
-            Me.m_propertyId = propertyId
+            m_formatId = formatId
+            m_propertyId = propertyId
         End Sub
     End Structure
 
@@ -197,22 +197,22 @@ Public Class AudioEndPoints
 
         Public Property VarType() As VarEnum
             Get
-                Return DirectCast(CInt(Me.valueType), VarEnum)
+                Return valueType
             End Get
             Set(ByVal value As VarEnum)
-                Me.valueType = CUShort(value)
+                valueType = CUShort(value)
             End Set
         End Property
 
         Public ReadOnly Property IsNullOrEmpty() As Boolean
             Get
-                Return (Me.valueType = CUShort(VarEnum.VT_EMPTY) OrElse Me.valueType = CUShort(VarEnum.VT_NULL))
+                Return (valueType = CUShort(VarEnum.VT_EMPTY) OrElse valueType = CUShort(VarEnum.VT_NULL))
             End Get
         End Property
 
         Public ReadOnly Property Value() As String
             Get
-                Return Marshal.PtrToStringUni(Me.ptr)
+                Return Marshal.PtrToStringUni(ptr)
             End Get
         End Property
 
@@ -222,8 +222,8 @@ Public Class AudioEndPoints
         Public Sub New(ByVal value As String)
             ArgumentNullException.ThrowIfNull(value)
 
-            Me.valueType = CUShort(VarEnum.VT_LPWSTR)
-            Me.ptr = Marshal.StringToCoTaskMemUni(value)
+            valueType = VarEnum.VT_LPWSTR
+            ptr = Marshal.StringToCoTaskMemUni(value)
         End Sub
 
         Protected Overrides Sub Finalize()

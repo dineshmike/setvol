@@ -13,7 +13,7 @@
 Imports NAudio.CoreAudioApi
 Imports NAudio.Wave
 
-Module Main
+Friend Module Main
 
     ' Global variables
 
@@ -25,12 +25,11 @@ Module Main
         Record = 1
     End Enum
     Private Structure DeviceTableStructure
-
-        Dim DeviceName As String
-        Dim EndPoint As MMDevice
-        Dim PayOrRecord As PlayOrRecordEnum
-        Dim DefaultDevice As Boolean
-        Dim DefaultDeviceComm As Boolean
+        Public DeviceName As String
+        Public EndPoint As MMDevice
+        Public PayOrRecord As PlayOrRecordEnum
+        Public DefaultDevice As Boolean
+        Public DefaultDeviceComm As Boolean
 
     End Structure
 
@@ -57,7 +56,7 @@ Module Main
 
     Private gSetAppAudioVolume As Boolean = False
 
-    Sub Main()
+    Public Sub Main()
 
         Dim ReturnCode As Integer = 0
         Dim CommandLine As String = ""
@@ -607,7 +606,7 @@ Module Main
 
                             sSamplingPeriod = SamplingPeriod(0)
 
-                            Dim CandiateSamplingPeriod As Decimal = CDec(sSamplingPeriod)
+                            Dim CandiateSamplingPeriod As Decimal = sSamplingPeriod
 
                             If CandiateSamplingPeriod > 0 Then
 
@@ -1433,7 +1432,7 @@ WrapUp:
 
         Dim sampleCount As Integer = 0
 
-        Dim StopAfter As DateTime = Now.AddMilliseconds(gTotalTestTimeForListingingInSeconds * 1000)
+        Dim StopAfter As Date = Now.AddMilliseconds(gTotalTestTimeForListingingInSeconds * 1000)
 
         While Now <= StopAfter
 
@@ -1806,7 +1805,7 @@ WrapUp:
                 End If
             Next
 
-            Dim TestNumber As Integer = CInt(TestCase)
+            Dim TestNumber As Integer = TestCase
             If TestNumber >= 0 And TestNumber <= 100 Then
                 Return TestNumber
             End If
