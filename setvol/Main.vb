@@ -1411,9 +1411,9 @@ WrapUp:
 
                 If (DefaultDeviceName_Play = String.Empty) Then
 
-                    MsgBox("Error - it appears no default sound output device is set." & vbCrLf & vbCrLf &
+                    Console_WriteLineInColour("Error - it appears no default sound output device is set." & vbCrLf & vbCrLf &
                              "Do you have a default sound output device set on your system?" & vbCrLf & vbCrLf &
-                             "Please right-click on the speaker icon in your systray, usually near your system clock at the bottom right-hand side, click on 'open sound settings' and then check what it says under 'choose your output device'.")
+                             "Please right-click on the speaker icon in your systray, usually near your system clock at the bottom right-hand side, click on 'open sound settings' and then check what it says under 'choose your output device'.", ConsoleColor.Red)
 
                 End If
 
@@ -1853,7 +1853,7 @@ WrapUp:
 
         Catch ex As Exception
 
-            MsgBox(Message & vbCrLf & ex.ToString)
+            Console_WriteLineInColour(Message & vbCrLf & ex.ToString, ConsoleColor.Red)
 
         End Try
 
