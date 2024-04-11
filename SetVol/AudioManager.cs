@@ -14,8 +14,7 @@ public static class AudioManager
             if (masterVol == null)
                 return -1;
 
-            float volumeLevel;
-            masterVol.GetMasterVolumeLevelScalar(out volumeLevel);
+            masterVol.GetMasterVolumeLevelScalar(out float volumeLevel);
             return volumeLevel * 100;
         }
         finally
@@ -53,8 +52,7 @@ public static class AudioManager
             deviceEnumerator.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia, out speakers);
 
             Guid IID_IAudioEndpointVolume = typeof(IAudioEndpointVolume).GUID;
-            object o;
-            speakers.Activate(ref IID_IAudioEndpointVolume, 0, IntPtr.Zero, out o);
+            speakers.Activate(ref IID_IAudioEndpointVolume, 0, IntPtr.Zero, out object o);
             IAudioEndpointVolume masterVol = (IAudioEndpointVolume)o;
 
             return masterVol;
@@ -71,9 +69,7 @@ public static class AudioManager
 
 [ComImport]
 [Guid("BCDE0395-E52F-467C-8E3D-C4579291692E")]
-internal class MMDeviceEnumerator
-{
-}
+internal class MMDeviceEnumerator;
 
 internal enum EDataFlow
 {
