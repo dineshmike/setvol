@@ -187,12 +187,12 @@ Module Main
 
             'remove the path and program name for setvol from the command line
 
-            If CommandLine.ToUpper.Contains("SETVOL.EXE") Then
-                CommandLine = CommandLine.Remove(0, CommandLine.ToUpper.IndexOf("SETVOL.EXE") + 10).TrimStart("""") ' remove the path in the command line "....SETVOL.EXE" (including the quotes)
+            If CommandLine.ToUpper.Contains("SETVOL.EXE", StringComparison.OrdinalIgnoreCase) Then
+                CommandLine = CommandLine.Remove(0, CommandLine.ToUpper.IndexOf("SETVOL.EXE", StringComparison.OrdinalIgnoreCase) + 10).TrimStart("""") ' remove the path in the command line "....SETVOL.EXE" (including the quotes)
             End If
 
-            If CommandLine.ToUpper.Contains("SETVOL") Then
-                CommandLine = CommandLine.Remove(0, CommandLine.ToUpper.IndexOf("SETVOL") + 6).TrimStart("""") ' remove the path in the command line "....SETVOL.EXE" (including the quotes)
+            If CommandLine.ToUpper.Contains("SETVOL", StringComparison.OrdinalIgnoreCase) Then
+                CommandLine = CommandLine.Remove(0, CommandLine.ToUpper.IndexOf("SETVOL", StringComparison.OrdinalIgnoreCase) + 6).TrimStart("""") ' remove the path in the command line "....SETVOL.EXE" (including the quotes)
             End If
 
             CommandLine = CommandLine.Trim
@@ -274,7 +274,7 @@ Module Main
 
                         For Each DeviceEntry As DeviceTableStructure In gDeviceTable
 
-                            If DeviceSpecifiedOnCommandLine = DeviceEntry.DeviceName.ToUpper Then
+                            If DeviceSpecifiedOnCommandLine.Equals(DeviceEntry.DeviceName, StringComparison.OrdinalIgnoreCase) Then
                                 DeviceMatchFound = True
                                 IndentifiedDeviceName = DeviceEntry.DeviceName
                                 gDev = DeviceEntry.EndPoint
@@ -409,7 +409,7 @@ Module Main
 
                 For i As Integer = 0 To gSessions.Count - 1
                     Dim Process As Process = Process.GetProcessById(gSessions(i).GetProcessID)
-                    If (Process.ProcessName.ToUpper = "IDLE") OrElse (Process.ProcessName.ToUpper = "SHELLEXPERIENCEHOST") Then
+                    If (Process.ProcessName.Equals("IDLE", StringComparison.OrdinalIgnoreCase)) OrElse (Process.ProcessName.Equals("SHELLEXPERIENCEHOST", StringComparison.OrdinalIgnoreCase)) Then
                     Else
                         count += 1
                     End If
@@ -425,7 +425,7 @@ Module Main
 
                 For i As Integer = 0 To gSessions.Count - 1
                     Dim Process As Process = Process.GetProcessById(gSessions(i).GetProcessID)
-                    If (Process.ProcessName.ToUpper = "IDLE") OrElse (Process.ProcessName.ToUpper = "SHELLEXPERIENCEHOST") Then
+                    If (Process.ProcessName.Equals("IDLE", StringComparison.OrdinalIgnoreCase)) OrElse (Process.ProcessName.Equals("SHELLEXPERIENCEHOST", StringComparison.OrdinalIgnoreCase)) Then
                     Else
                         Console_WriteLineInColour("   " & Process.ProcessName & " ( current audio level = " & gSessions(i).SimpleAudioVolume.Volume * 100 & " )", ConsoleColor.Gray)
                     End If
@@ -437,9 +437,9 @@ Module Main
 
                 Dim AppAudioSpecifiedOnCommandLine As String = CommandLine.Remove(0, CommandLine.IndexOf("APPAUDIO") + "APPAUDIO".Length).Trim
 
-                Dim AppAudioSpecifiedOnCommandLineInOriginalCase = OriginalCommandLine.Remove(0, OriginalCommandLine.ToUpper.IndexOf("APPAUDIO") + "APPAUDIO".Length).Trim
+                Dim AppAudioSpecifiedOnCommandLineInOriginalCase = OriginalCommandLine.Remove(0, OriginalCommandLine.ToUpper.IndexOf("APPAUDIO", StringComparison.OrdinalIgnoreCase) + "APPAUDIO".Length).Trim
 
-                If AppAudioSpecifiedOnCommandLineInOriginalCase.ToUpper <> AppAudioSpecifiedOnCommandLine Then
+                If Not AppAudioSpecifiedOnCommandLineInOriginalCase.Equals(AppAudioSpecifiedOnCommandLine, StringComparison.OrdinalIgnoreCase) Then
                     AppAudioSpecifiedOnCommandLineInOriginalCase = AppAudioSpecifiedOnCommandLineInOriginalCase.Remove(AppAudioSpecifiedOnCommandLine.Length)
                 End If
 
@@ -459,7 +459,7 @@ Module Main
 
                             Dim Process As Process = Process.GetProcessById(gSessions(i).GetProcessID)
 
-                            If Process.ProcessName.ToUpper = AppAudioSpecifiedOnCommandLine Then
+                            If Process.ProcessName.Equals(AppAudioSpecifiedOnCommandLine, StringComparison.OrdinalIgnoreCase) Then
 
                                 ApplicationName = AppAudioSpecifiedOnCommandLineInOriginalCase
 
@@ -833,7 +833,7 @@ Module Main
 
                     WorkingLine = CommandLine.ToUpper
 
-                    Dim BalanceEndsAt As Integer = WorkingLine.ToUpper.IndexOf("BALANCE")
+                    Dim BalanceEndsAt As Integer = WorkingLine.ToUpper.IndexOf("BALANCE", StringComparison.OrdinalIgnoreCase)
                     BalanceEndsAt = WorkingLine.ToUpper.LastIndexOf(":")
 
                     Dim KeepGoing As Boolean = True
@@ -1401,11 +1401,11 @@ WrapUp:
 
         End Try
 
-        If CommandLine.ToUpper.Contains("NODEFAULT") Then
+        If CommandLine.ToUpper.Contains("NODEFAULT", StringComparison.OrdinalIgnoreCase) Then
 
         Else
 
-            If CommandLine.ToUpper.Contains("DEVICE") Then
+            If CommandLine.ToUpper.Contains("DEVICE", StringComparison.OrdinalIgnoreCase) Then
 
             Else
 
