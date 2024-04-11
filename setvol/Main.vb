@@ -7,13 +7,6 @@
 ' NAudio is licensed under the Microsoft Public License (MS-PL)
 ' https://opensource.org/licenses/MS-PL
 '
-' SetVol makes use of Fody and Costura.Fody
-' Both are licensed under the MIT License
-' https://opensource.org/licenses/MIT
-
-' Install-Package Costura.Fody which embeds the Naudio.dll
-' https://stackoverflow.com/questions/189549/embedding-dlls-in-a-compiled-executable
-
 ' Additional thanks to IronRazerz for the significant portion of the ChangeDefaultDevice functionality as excerpted from here:
 ' https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/3c437708-0e90-483d-b906-63282ddd2d7b/change-audio-input
 
@@ -1642,10 +1635,6 @@ WrapUp:
         Console_WriteLineInColour(" ")
         Console_WriteLineInColour("SetVol is open source", ConsoleColor.Cyan)
         Console_WriteLineInColour("https://github.com/roblatour/setvol", ConsoleColor.Cyan)
-        Console_WriteLineInColour(" ")
-        Console_WriteLineInColour("SetVol makes use of Fody and Costura.Fody", ConsoleColor.Cyan)
-        Console_WriteLineInColour("Both are licensed under the MIT License", ConsoleColor.Cyan)
-        Console_WriteLineInColour("https://opensource.org/licenses/MIT", ConsoleColor.Cyan)
         Console_WriteLineInColour(" ")
         Console_WriteLineInColour("SetVol makes use of NAudio by Mark Heath", ConsoleColor.Cyan)
         Console_WriteLineInColour("NAudio is licensed under the Microsoft Public License (MS-PL)", ConsoleColor.Cyan)
