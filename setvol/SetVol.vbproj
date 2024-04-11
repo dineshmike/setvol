@@ -2,7 +2,10 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<OutputType>Exe</OutputType>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Description>set playing and recording levels</Description>
+		<Company>Rob Latour</Company>
+		<Copyright>Copyright © 2023, Rob Latour</Copyright>
+		<Version>4.1</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="NAudio" Version="2.1.0" />
