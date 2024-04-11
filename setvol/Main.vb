@@ -701,7 +701,7 @@ Module Main
 
                 WorkingLine = WorkingLine.Remove(0, OverTimeNumberStartsAt).Trim
 
-                Dim Pos As Integer = WorkingLine.IndexOf(" ")
+                Dim Pos As Integer = WorkingLine.IndexOf(" "c)
 
                 Dim sFadeTime As String
 
@@ -760,7 +760,7 @@ Module Main
 
             If CommandLine.Length = 0 Then GoTo SetAppAudioVolume
 
-            If CommandLine.Contains(".") Then
+            If CommandLine.Contains("."c) Then
                 Console_WriteLineInColour("Error: an unexpected period (""."") was found in the command line", ConsoleColor.Red)
                 GoTo ErrorFound
             End If
@@ -774,7 +774,7 @@ Module Main
 
                 WorkingLine = WorkingLine.Remove(0, BalanceStartsAt + "BALANCE".Length).Trim
 
-                If WorkingLine.Contains(":") Then
+                If WorkingLine.Contains(":"c) Then
 
                     While WorkingLine.Contains(" :")
                         WorkingLine = WorkingLine.Replace(" :", ":")
@@ -783,7 +783,7 @@ Module Main
                         WorkingLine = WorkingLine.Replace(":  ", ": ")
                     End While
 
-                    Dim EndOfWorkingLine As Integer = WorkingLine.IndexOf(" ", WorkingLine.LastIndexOf(":"))
+                    Dim EndOfWorkingLine As Integer = WorkingLine.IndexOf(" "c, WorkingLine.LastIndexOf(":"c))
                     If EndOfWorkingLine > 0 Then
                         WorkingLine = WorkingLine.Remove(EndOfWorkingLine)
                     End If
@@ -834,7 +834,7 @@ Module Main
                     WorkingLine = CommandLine.ToUpper
 
                     Dim BalanceEndsAt As Integer = WorkingLine.ToUpper.IndexOf("BALANCE", StringComparison.OrdinalIgnoreCase)
-                    BalanceEndsAt = WorkingLine.ToUpper.LastIndexOf(":")
+                    BalanceEndsAt = WorkingLine.ToUpper.LastIndexOf(":"c)
 
                     Dim KeepGoing As Boolean = True
                     Dim test As String = String.Empty
@@ -872,11 +872,11 @@ Module Main
             ' +/- n
             CommandLine = CommandLine.Trim
 
-            If CommandLine.StartsWith("+") OrElse CommandLine.StartsWith("-") OrElse (IsNumeric(CommandLine.Substring(0, 1)) AndAlso gFadeTime > -1) Then
+            If CommandLine.StartsWith("+"c) OrElse CommandLine.StartsWith("-"c) OrElse (IsNumeric(CommandLine.Substring(0, 1)) AndAlso gFadeTime > -1) Then
 
                 Dim WorkingLine As String = CommandLine
 
-                If WorkingLine.StartsWith("+") OrElse WorkingLine.StartsWith("-") Then
+                If WorkingLine.StartsWith("+"c) OrElse WorkingLine.StartsWith("-"c) Then
                     WorkingLine = WorkingLine.Remove(0, 1).Trim()
                 End If
 
@@ -899,7 +899,7 @@ Module Main
                             ' we will to use the highest volume of all them as the starting point for fading down, and
                             ' the lowest volume of all them as the starting point for fading up
 
-                            If CommandLine.StartsWith("-") Then
+                            If CommandLine.StartsWith("-"c) Then
                                 gStartingLevel = 0
                                 For Each i In gSessionIndex
                                     gStartingLevel = Math.Max(gStartingLevel, gSessions(i).SimpleAudioVolume.Volume * 100)
@@ -915,10 +915,10 @@ Module Main
 
                         Dim CurrentVolume As Integer = gStartingLevel
 
-                        If CommandLine.StartsWith("-") Then
+                        If CommandLine.StartsWith("-"c) Then
                             NewVolume = CurrentVolume - DeltaVolume
                             If NewVolume < 0 Then NewVolume = 0
-                        ElseIf CommandLine.StartsWith("+") Then
+                        ElseIf CommandLine.StartsWith("+"c) Then
                             NewVolume = CurrentVolume + DeltaVolume
                             If NewVolume > 100 Then NewVolume = 100
                         Else
