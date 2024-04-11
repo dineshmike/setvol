@@ -1493,7 +1493,6 @@ WrapUp:
 
         Catch ex As Exception
 
-            ex = ex
 
         End Try
 

@@ -56,7 +56,6 @@ Public Class AudioEndPoints
             If (IPCV IsNot Nothing) Then
                 While Marshal.ReleaseComObject(IPCV) > 0
                 End While
-                IPCV = Nothing
             End If
 
             If (oIPCV IsNot Nothing) Then
