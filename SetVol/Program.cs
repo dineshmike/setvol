@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using NAudio.CoreAudioApi;
+using System;
 
 namespace SetVol;
 
-internal static partial class Program
+internal static class Program
 {
-    private static async Task Main(string[] args)
+    private static void Main(string[] args)
     {
         if (args.Length == 0 || string.IsNullOrWhiteSpace(args[0]))
         {
@@ -16,10 +16,13 @@ internal static partial class Program
         }
 
         bool isValidLevel = float.TryParse(args[0], out float level);
-        if (isValidLevel && level > 0)
+        if (isValidLevel && level > -1)
         {
-            AudioManager.SetMasterVolume(level);
-            Console.WriteLine(AudioManager.GetMasterVolume());
+            MMDeviceEnumerator deviceEnumerator = new();
+            MMDevice device = deviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+
+            // Volume between 0 and 1 where 1 is max volume
+            device.AudioEndpointVolume.MasterVolumeLevelScalar = level / 100;
         }
     }
 }
