@@ -174,13 +174,13 @@ Module Main
 
         Dim EndingLevel As Integer = 0
 
-        Dim DeviceChannelValue() As Integer
+        Dim DeviceChannelValue() As Integer = Array.Empty(Of Integer)()
 
         Dim MasterVolumeLevelChanged As Boolean = False
 
         Dim AChangeInBalanceIsRequired As Boolean = False
 
-        Dim ApplicationName As String
+        Dim ApplicationName As String = ""
         Dim NewVolume As Integer
 
         Try
