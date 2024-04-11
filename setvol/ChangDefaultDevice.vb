@@ -15,8 +15,8 @@ Public Class AudioEndPoints
     <ComImport(), Guid("568b9108-44bf-40b4-9006-86afe5b5a620"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)>
     Private Interface IPolicyConfigVista
         Function GetMixFormat(<MarshalAs(UnmanagedType.LPWStr)> ByVal wszDeviceId As String, ByRef param1 As IntPtr) As Integer 'not available on Windows 7, use method from IPolicyConfig
-        Function GetDeviceFormat(<MarshalAs(UnmanagedType.LPWStr)> ByVal wszDeviceId As String, ByVal param1 As Integer, ByRef wfx As tWAVEFORMATEX) As Integer
-        Function SetDeviceFormat(<MarshalAs(UnmanagedType.LPWStr)> ByVal wszDeviceId As String, ByRef wfx1 As tWAVEFORMATEX, ByRef wfx2 As tWAVEFORMATEX) As Integer
+        Function GetDeviceFormat(<MarshalAs(UnmanagedType.LPWStr)> ByVal wszDeviceId As String, ByVal param1 As Integer, ByRef wfx As TWAVEFORMATEX) As Integer
+        Function SetDeviceFormat(<MarshalAs(UnmanagedType.LPWStr)> ByVal wszDeviceId As String, ByRef wfx1 As TWAVEFORMATEX, ByRef wfx2 As TWAVEFORMATEX) As Integer
         Function GetProcessingPeriod(<MarshalAs(UnmanagedType.LPWStr)> ByVal wszDeviceId As String, ByVal param1 As Integer, ByRef param2 As Long, ByRef param3 As Long) As Integer 'not available on Windows 7, use method from IPolicyConfig
         Function SetProcessingPeriod(<MarshalAs(UnmanagedType.LPWStr)> ByVal wszDeviceId As String, ByRef param1 As Long) As Integer 'not available on Windows 7, use method from IPolicyConfig
         Function GetShareMode(<MarshalAs(UnmanagedType.LPWStr)> ByVal wszDeviceId As String, ByRef DeviceShareMode As IntPtr) As Integer 'not available on Windows 7, use method from IPolicyConfig
@@ -178,7 +178,7 @@ Public Class AudioEndPoints
     End Structure
 
     <StructLayout(LayoutKind.Sequential)>
-    Private Structure tWAVEFORMATEX
+    Private Structure TWAVEFORMATEX
         Public wFormatTag As UShort
         Public nChannels As UShort
         Public nSamplesPerSec As UInteger
