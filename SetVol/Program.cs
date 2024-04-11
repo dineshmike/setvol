@@ -1,5 +1,4 @@
 ﻿using NAudio.CoreAudioApi;
-using System;
 
 namespace SetVol;
 
