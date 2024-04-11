@@ -2,11 +2,7 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<OutputType>Exe</OutputType>
-		<StartupObject>SetVol.Main</StartupObject>
-		<MyType>Console</MyType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<UseWindowsForms>true</UseWindowsForms>
-		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="NAudio" Version="2.1.0" />
