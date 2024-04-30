@@ -10,6 +10,7 @@
 ' Additional thanks to IronRazerz for the significant portion of the ChangeDefaultDevice functionality as excerpted from here:
 ' https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/3c437708-0e90-483d-b906-63282ddd2d7b/change-audio-input
 
+Imports System.Windows.Forms
 Imports NAudio.CoreAudioApi
 Imports NAudio.Wave
 
@@ -124,7 +125,7 @@ Friend Module Main
         'CommandLine = "25 appaudio vlc"
         'CommandLine = "mute appaudio vlc"
         'CommandLine = "unmute appaudio vlc"
-        'CommandLine = "100"
+        CommandLine = "26"
         'CommandLine = "unmute device Speakers (Realtek USB2.0 Audio)"
         'CommandLine = "unmute appaudio vlc debug"
         'CommandLine = "appaudio"
@@ -133,13 +134,14 @@ Friend Module Main
         'CommandLine = "100 appaudio vlc"
         'CommandLine = "debug"
         'CommandLine = "SetVol 40 balance 100:100:0:0:0:89"
-        CommandLine = "SetVol 40 balance 100:100:0:0:0:91"
+        'CommandLine = "SetVol 40 balance 100:100:0:0:0:91"
 
 #Else
 
         CommandLine = Environment.CommandLine
 
 #End If
+        Keyboard.SendKey(Keys.VolumeDown)
 
         gStartingColour = Console.ForegroundColor
         gCurrentColour = gStartingColour
